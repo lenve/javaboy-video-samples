@@ -1,0 +1,16 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /javaboy
+redis:
+  port: 6379
+  hosts:
+    - 192.168.66.128
+    - 192.168.66.129
+    - 192.168.66.130
+    - 192.168.66.131
+  redisList:
+    - port: 6379
+      host: 192.168.66.66
+    - port: 6380
+      host: 192.168.66.67

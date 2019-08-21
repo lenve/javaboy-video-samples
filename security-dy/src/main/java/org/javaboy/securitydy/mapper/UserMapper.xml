@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.javaboy.securitydy.mapper.UserMapper">
+    <select id="loadUserByUsername" resultType="org.javaboy.securitydy.bean.User">
+        select * from user where username=#{username}
+    </select>
+    <select id="getRolesById" resultType="org.javaboy.securitydy.bean.Role">
+        select * from role where id in(select rid from user_role where uid=#{id})
+    </select>
+</mapper>

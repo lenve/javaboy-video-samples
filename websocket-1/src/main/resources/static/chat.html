@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>群聊</title>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td>请输入用户名</td>
+        <td><input type="text" id="name"></td>
+    </tr>
+    <tr>
+        <td><input type="button" id="connect" value="连接"></td>
+        <td><input type="button" id="disconnect" disabled="disabled" value="断开连接"></td>
+    </tr>
+</table>
+<div id="chat" style="display: none">
+    <table>
+        <tr>
+            <td>请输入聊天内容</td>
+            <td><input type="text" id="content"></td>
+            <td><input type="button" id="send" value="发送"></td>
+        </tr>
+    </table>
+    <div id="conversation">群聊进行中...</div>
+</div>
+<script>
+    $(function () {
+        $("#connect").click(function () {
+            connect();
+        })
+        $("#disconnect").click(function () {
+            if (stompClient != null) {
+                stompClient.disconnect();
+            }
+            setConnected(false);
+        })
+
+        $("#send").click(function () {
+            stompClient.send('/app/hello',{},JSON.stringify({'name':$("#name").val(),'content':$("#content").val()}))
+        })
+    })
+
+    var stompClient = null;
+
+    function connect() {
+        if (!$("#name").val()) {
+            return;
+        }
+        var socket = new SockJS('/chat');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (success) {
+            setConnected(true);
+            stompClient.subscribe('/topic/greetings', function (msg) {
+                showGreeting(JSON.parse(msg.body));
+            });
+        })
+    }
+
+    function showGreeting(msg) {
+        $("#conversation").append('<div>' + msg.name + ':' + msg.content + '</div>');
+    }
+
+    function setConnected(flag) {
+        $("#connect").prop("disabled", flag);
+        $("#disconnect").prop("disabled", !flag);
+        if (flag) {
+            $("#chat").show();
+        } else {
+            $("#chat").hide();
+        }
+    }
+</script>
+</body>
+</html>

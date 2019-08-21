@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery3.3.1.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<input type="button" value="GET" onclick="getData()">
+<input type="button" value="PUT" onclick="putData()">
+<script>
+    function getData() {
+        $.get('http://localhost:8080/hello', function (msg) {
+            $("#app").html(msg);
+        });
+    }
+
+    function putData() {
+        $.ajax({
+            type: 'put',
+            url: 'http://localhost:8080/doput',
+            success: function (msg) {
+                $("#app").html(msg);
+            }
+        })
+    }
+</script>
+</body>
+</html>
