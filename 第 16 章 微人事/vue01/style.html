@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div v-bind:style="{color:fontColor,fontSize:fontSize+'px'}">{{msg}}</div>
+    <div v-bind:style="styleObj">{{msg}}</div>
+    <div v-bind:style="[styleObj,styleObj2]">{{msg}}</div>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            msg: 'hello javaboy!',
+            fontColor:'red',
+            fontSize:30,
+            styleObj:{
+                color:'red',
+                fontSize:'30px'
+            },
+            styleObj2:{
+                border:'1px solid #dedede'
+            }
+        }
+    })
+</script>
+<style>
+    .mydiv2{
+        border:1px solid #dedede;
+    }
+    .mydiv1{
+        font-size: 30px;
+    }
+    .mydiv {
+        font-weight: bold;
+        color: #ff0000;
+    }
+</style>
+</body>
+</html>

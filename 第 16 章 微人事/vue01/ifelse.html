@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div v-if="isShow">hello vue!</div>
+    <template v-if="isShow">
+        <p>hello vue</p>
+        <div>hello javaboy!</div>
+        <span>www.javaboy.org</span>
+    </template>
+    <div v-else>江南一点雨</div>
+    性别：
+    <div v-if="gender==0">男</div>
+    <div v-else-if="gender==1">女</div>
+    <div v-else>未知</div>
+    <hr>
+    <template v-if="loginType=='username'">
+        <label>用户名</label>
+        <input type="text" placeholder="请输入用户名" key="username">
+    </template>
+    <template v-else>
+        <label>用户名</label>
+        <input type="text" placeholder="请输入用户邮箱地址" key="email">
+    </template>
+
+    <hr>
+
+    <div v-show="!isHide">hello world!v-show</div>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isShow: false,
+            gender:0,
+            loginType:'username',
+            isHide:false
+        }
+    })
+</script>
+</body>
+</html>

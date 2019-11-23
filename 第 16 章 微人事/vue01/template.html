@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>{{a}}</div>
+    <button :disabled="!enableBtn" @click="num++">按钮</button>
+    <div v-html="a"></div>
+    <div>{{num>101?'good':num}}</div>
+    <a :href="mylink">江南一点雨</a>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            a: '<h1>hello javaboy!</h1>',
+            enableBtn: true,
+            b: null,
+            num: 99,
+            mylink: 'http://www.javaboy.org'
+        }
+    })
+</script>
+</body>
+</html>

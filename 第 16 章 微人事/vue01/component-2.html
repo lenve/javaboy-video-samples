@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <javaboy title="组件一"></javaboy>
+    <javaboy title="组件二"></javaboy>
+    <myblog @sayhello="hello" v-for="(blog,index) in blogs" :title="blog.title" :date="blog.date" :author="blog.author"
+            :key="index">
+        <div style="color: #ff0000;">hello javaboy!</div>
+    </myblog>
+    <hr>
+    <component v-bind:is="currentTabComponent"></component>
+</div>
+<script>
+    Vue.component('javaboy', {
+        data() {
+            return {
+                counter: 0
+            }
+        },
+        props: ['title'],
+        template: '<div><button v-on:click="counter++">hello {{counter}}!</button><div>{{title}}</div></div>'
+    })
+    Vue.component('myblog', {
+        props: ['title', 'date', 'author'],
+        template: '<div>' +
+        '<div>{{title}}</div>' +
+        '<div>{{date}}--{{author}}</div>' +
+            '<slot></slot>'+
+        '<button @click="$emit(\'sayhello\',title)">click</button>' +
+        '</div>'
+    })
+    var app = new Vue({
+        el: '#app',
+        methods: {
+            hello(val) {
+                console.log("hello " + val + "!")
+            }
+        },
+        data: {
+            currentTabComponent:'myblog',
+            blogs: [
+                {
+                    title: '标题一',
+                    date: '2019-09-13',
+                    author: 'javaboy'
+                }, {
+                    title: '标题二',
+                    date: '2019-09-14',
+                    author: 'javaboy'
+                }, {
+                    title: '标题三',
+                    date: '2019-09-15',
+                    author: '江南一点雨'
+                }
+            ]
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>{{a}}</div>
+</div>
+<script>
+    var data = {a: 1, b: null}
+    // Object.freeze(data);
+    var app = new Vue({
+        el: '#app',
+        data: data,
+        created() {
+            console.log("create")
+        }
+    })
+    console.log(data.a == app.a);
+    data.a = 99;
+    console.log(app.a);
+    app.a = 100;
+    console.log(data.a);
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    console.log(app.$el==document.getElementById("app"))
+    console.log(app.$data == data);
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>{{message}}</div>
+    <button v-on:click="reverseMessage">反转消息</button>
+    <div>{{message.split('').reverse().join('')}}</div>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: "hello javaboy!"
+        },
+        methods:{
+            reverseMessage() {
+                this.message = this.message.split('').reverse().join('');
+            }
+        }
+    })
+</script>
+</body>
+</html>

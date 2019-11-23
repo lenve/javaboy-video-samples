@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>{{counter}}</div>
+    <input type="button" value="自增" v-on:click="increment(2)">
+    <input type="text" @keydown.ctrl.enter="submit">
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            counter:0
+        },
+        methods:{
+            submit() {
+                console.log("submit()")
+            },
+            increment(step) {
+                this.counter = this.counter + step;
+            }
+        }
+    })
+</script>
+</body>
+</html>

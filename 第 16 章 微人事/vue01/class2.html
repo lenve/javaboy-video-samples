@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div v-bind:class="classObj" class="mydiv1">{{msg}}</div>
+    <div v-bind:class="[flag ? mydivClass : '',mydiv2Class]">{{msg}}</div>
+    <div v-bind:class="[{mydiv:flag},mydiv2Class]">{{msg}}</div>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            msg: 'hello javaboy!',
+            flag: true,
+            hasBorder: true,
+            mydivClass: 'mydiv',
+            mydiv2Class: 'mydiv2'
+        },
+        computed: {
+            classObj() {
+                return {
+                    mydiv: this.flag,
+                    mydiv2: this.hasBorder
+                }
+            }
+        }
+    })
+</script>
+<style>
+    .mydiv2 {
+        border: 1px solid #dedede;
+    }
+
+    .mydiv1 {
+        font-size: 30px;
+    }
+
+    .mydiv {
+        font-weight: bold;
+        color: #ff0000;
+    }
+</style>
+</body>
+</html>

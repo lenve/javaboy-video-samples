@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<input lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<div id="app">
+    <input type="text" v-model="message">
+    <div>{{message}}</div>
+    <hr>
+    <textarea v-model='textarea' cols="30" rows="10"></textarea>
+    <p style="white-space: pre-line;">{{textarea}}</p>
+    <hr>
+    <input type="checkbox" v-model="isRead">
+    <div>{{isRead}}</div>
+    <hr>
+    <input type="checkbox" value="足球" v-model="favorites">足球</input>
+    <input type="checkbox" value="篮球" v-model="favorites">篮球</input>
+    <input type="checkbox" value="乒乓球" v-model="favorites">乒乓球</input>
+    <div>{{favorites}}</div>
+    <hr>
+    性别：<input type="radio" value="男" v-model="gender">男 <input type="radio" value="女" v-model="gender">女
+    <div>{{gender}}</div>
+    <hr>
+    学历:
+    <select v-model="edu">
+        <option value="小学">小学</option>
+        <option value="初中">初中</option>
+        <option value="高中">高中</option>
+    </select>
+    <div>{{edu}}</div>
+    <hr>
+    <select v-model="favorites" multiple>
+        <option v-for="(f,index) in fs" v-bind:key="index" v-bind:value="f">{{f}}</option>
+    </select>
+    <hr>
+    <input type="checkbox" true-value="yes" false-value="no" v-model="toggle">
+    <div>{{toggle}}</div>
+    <hr>
+    <input type="text" v-model="message">
+    <div>{{message}}</div>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: '',
+            textarea: '',
+            isRead: false,
+            gender: '',
+            favorites: [],
+            edu:'',
+            fs:[
+                '足球',
+                '篮球',
+                '乒乓球'
+            ],
+            toggle: ''
+        }
+    })
+</script>
+</body>
+</html>
